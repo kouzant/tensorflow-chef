@@ -272,6 +272,7 @@ for python in python_versions
     #yes | ${CONDA_DIR}/envs/${ENV}/bin/pip install pyspark==#{node['pyspark']['version']}
     yes | ${CONDA_DIR}/envs/${ENV}/bin/pip install hops-apache-beam==#{node['conda']['beam']['python']['version']}
 
+    yes | ${CONDA_DIR}/envs/${ENV}/bin/pip install --no-cache-dir --upgrade witwidget
     yes | ${CONDA_DIR}/envs/${ENV}/bin/pip uninstall tensorflow
     yes | ${CONDA_DIR}/envs/${ENV}/bin/pip uninstall tensorboard
     yes | ${CONDA_DIR}/envs/${ENV}/bin/pip uninstall tensorflow-estimator
@@ -409,8 +410,7 @@ for python in python_versions
 
       yes | ${CONDA_DIR}/envs/${ENV}/bin/pip install --no-cache-dir --upgrade hdfscontents urllib3 requests pandas
 
-      # Install wit-widget
-      yes | ${CONDA_DIR}/envs/${ENV}/bin/pip install --no-cache-dir --upgrade witwidget
+      # Install wit-widget JupyterLab extension
       source /usr/local/nvm/nvm.sh
       nvm use 10.16.0
       ${CONDA_DIR}/envs/${ENV}/bin/jupyter labextension install --no-build wit-widget
